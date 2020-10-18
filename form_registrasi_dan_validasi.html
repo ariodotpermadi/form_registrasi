@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>FORM REGISTRASI</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  	<style>
+  		body{
+  			background-color: #F8F8FF;
+  		}
+
+  		h2 {
+  			color: #000000;
+  			text-align: center
+  		}
+  		
+  		p{
+  			color: #000000;  			
+  		}
+
+  		#nama{
+  			text-transform: capitalize;
+  		}  		
+  	</style>
+
+  	<script>
+  			/*Validasi data*/
+			function validation(){
+				if (document.forms["formPendaftaran"] ["nama"].value == "") {
+					alert("Nama tidak boleh kosong!");
+					document.forms["formPendaftaran"]["nama"].focus();
+					return false;
+				}
+				if (document.forms["formPendaftaran"] ["email"].value == "") {
+					alert("Email tidak boleh kosong!");
+					document.forms["formPendaftaran"]["email"].focus();
+					return false;
+				}
+				if (document.forms["formPendaftaran"] ["telephone"].value == "") {
+					alert("Telephone tidak boleh kosong!");
+					document.forms["formPendaftaran"]["telephone"].focus();
+					return false;
+				}
+				if (document.forms["formPendaftaran"] ["username"].value == "") {
+					alert("Username tidak boleh kosong!");
+					document.forms["formPendaftaran"]["username"].focus();
+					return false;
+				}
+				if (document.forms["formPendaftaran"] ["password"].value == "") {
+					alert("Password tidak boleh kosong!");
+					document.forms["formPendaftaran"]["password"].focus();
+					return false;
+				}	
+				//validasi radio button
+				var x=document.forms["formPendaftaran"]["gender"].value;
+				if (x==null || x=="") {
+					alert("Pilih jenis kelamin!");
+					return false;
+				}
+				//validasi radio button
+				//validasi checkbox
+				var checked=false;
+    			var elements = document.getElementsByName("hobi");
+    			for(var i=0; i < elements.length; i++){
+        		if(elements[i].checked) {
+            	checked = true;
+        			}
+    			}
+    			if (!checked) {
+        			alert('Pilih hobi anda!');
+        			return false;
+   				 }
+    				
+				
+				//validasi checkbox
+
+				//Submit
+				var nama=document.getElementById('nama').value;
+				var email=document.getElementById('email').value;
+				var phone=document.getElementById('telephone').value;
+				var usr=document.getElementById('username').value;
+				var pwd=document.getElementById('password').value;
+				var jkl=document.getElementById('jkel').value;
+				var hoby=document.getElementById('myHoby').value;
+
+				if (nama!="" && email!="" && phone!="" && usr!="" && pwd!="" && jkl!="" && hoby!="") {
+					alert("Registrasi berhasil!");
+					return true;
+				}else{
+					alert("Registrasi gagal!");
+				}
+				//Submit
+
+			}
+
+		</script>
+</head>
+<body>
+	<div class="container">
+		<h2><strong>FORM REGISTRASI</strong></h2><br>
+
+	</div>
+
+	<div class="container">
+		<form action="#"  onsubmit="return validation()" form name="formPendaftaran" method="POST" enctype="multipart/form-data">
+			<div class="form-group">
+				<label>NAMA :</label>
+				<input type="text" class="form-control" id= "nama"  name="nama" placeholder="Nama">
+			</div><br>
+			<div class="form-group">
+				<label>EMAIL :</label>
+				<input type="email" class="form-control" id="email" name="email" placeholder="Email">
+			</div><br>
+			<div class="form-group">
+				<label>TELEPHONE :</label>
+				<input type="text"class="form-control" id="telephone" name="telephone" placeholder="Telephone" onkeypress="return hanyaAngka(event);">
+				<script>
+					function hanyaAngka(event) {
+            		var angka = (event.which) ? event.which : event.keyCode
+            		if (angka != 46 && angka > 31 && (angka < 48 || angka > 57))
+                	return false;
+            		return true;        }
+				</script>
+			</div><br>
+			<div class="form-group">
+				<label>USERNAME :</label>
+				<input type="text" class="form-control" id="username" name="username" placeholder="Username" maxlength="10">
+			</div><br>
+			<div class="form-group">
+				<label>PASSWORD:</label>
+				<input type="password" class="form-control" id="password" name="password" placeholder="Password" minlength="7">
+			</div><br>
+			<div class="form-group">
+				<label>JENIS KELAMIN:</label>
+				<div class="form-check-inline">
+					<label class="form-check-label" for="laki-laki">
+						<input type="radio" class="form-check-input" id="jkel" value="Laki-laki" name="gender">Laki-laki	
+					</label>
+				</div>				
+				<div class="form-check-inline">
+					<label class="form-check-label" for="perempuan">
+						<input type="radio" class="form-check-input" id="jkel" value="Perempuan" name="gender">Perempuan						
+					</label>
+				</div>
+			</div><br>
+			<div class="form-group">
+				<label>HOBI :</label>
+				<div class="form-check">
+					<label class="form-check-label" for="olahraga">
+						<input type="checkbox" class="form-check-input" id="myHoby" value="Olahraga" name="hobi">Olahraga
+					</label>
+				</div>
+				<div class="form-check">
+					<label class="form-check-label" for="membaca">
+						<input type="checkbox" class="form-check-input" id="myHoby" value="Membaca" name="hobi">Membaca
+					</label>
+				</div>
+				<div class="form-check">
+					<label class="form-check-label" for="naik_gunung">
+						<input type="checkbox" class="form-check-input" id="myHoby" value="Naik Gunung" name="hobi">Naik Gunung
+					</label>
+				</div>
+				<div class="form-check">
+					<label class="form-check-label" for="menulis">
+						<input type="checkbox" class="form-check-input" id="myHoby"  value="Menulis" name="hobi">Menulis
+					</label>
+				</div>
+				<div class="form-check">
+					<label class="form-check-label" for="lain-lain">
+						<input type="checkbox" class="form-check-input" id="myHoby"  value="Lain-lain" name="hobi">Lain-lain
+					</label>
+				</div><br><br>
+				<button class="btn btn-primary" type="submit" >DAFTAR</button>
+				<button type="reset"  class="btn btn-danger">RESET</button><br><br>							
+			</div>
+		</form>		
+	</div>
+
+</body>
+</html>
